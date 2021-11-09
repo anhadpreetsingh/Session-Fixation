@@ -7,6 +7,38 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>HIIII <%=name%></h1>
+  
+  <h1>Hack Me <%=name%> </h1>
+
+  <input type="text" name="query" id="query">
+  <input type="submit" onclick="search()">
+
+  <h2>You searched for: <span id="text"></span></h2>
+
+
+  <script type="text/javascript">
+    function search() {
+
+    //<img src onerror="alert('hi')">
+
+        var searching = document.getElementById("query").value
+
+        if ('URLSearchParams' in window) {
+            var searchParams = new URLSearchParams(window.location.search);
+            searchParams.set("query", searching);
+            window.location.search = searchParams.toString();
+        }
+    }
+
+    (function ready() {
+        var param = new URL(window.location).searchParams.get('query')
+
+        document.getElementById("query").value = param;
+        var text = document.getElementById("text")
+
+        text.innerHTML = param
+
+    })()
+  </script>
 </body>
 </html>
